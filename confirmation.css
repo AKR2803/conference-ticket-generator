@@ -1,0 +1,272 @@
+@font-face{
+    font-family: 'Inconsolata';
+    src : url('./assets/fonts/static/Inconsolata-Regular.ttf') format('truetype');
+    font-weight: 400; /* 400 instead of normal */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('./assets/fonts/static/Inconsolata-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Inconsolata';
+    src: url('./assets/fonts/static/Inconsolata-Bold.ttf') format('truetype');
+    font-weight: 700; /* change this to 700 for bold */
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Inconsolata';
+    src: url('./assets/fonts/static/Inconsolata-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+:root{
+    --neutral-0: hsl(0, 0%, 100%);
+    --neutral-300: hsl(252, 6%, 83%);
+    --neutral-500: hsl(245, 15%, 58%);
+    --neutral-700: hsl(245, 19%, 35%);
+    --neutral-900: hsl(248, 70%, 10%);
+    
+    --orange-500: hsl(7, 88%, 67%);
+    --orange-700: hsl(7, 71%, 60%);
+
+    --gradient-text: linear-gradient(to right, hsl(7, 86%, 67%),  hsl(0, 0%, 100%));
+}
+
+*{
+    margin: 0;
+}
+
+body{
+    font-family: 'Inconsolata', sans-serif;
+}
+
+.container > p:first-of-type, h1{
+    text-align: center;
+    width: 50%;
+}
+
+
+/* form container flex */
+.container{
+    background: 
+        url('./assets/images/pattern-squiggly-line-bottom-desktop.svg') no-repeat  0 bottom,
+        url('./assets/images/pattern-squiggly-line-top.svg') no-repeat top right,
+        url('./assets/images/pattern-lines.svg') repeat,
+        url('./assets/images/background-desktop.png') no-repeat center center;
+    background-size: 60%, 30%, cover, cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 0 auto;
+    padding-top: 1rem;
+    width: 60%;
+    max-width: 900px;
+    height: 700px;
+    color: var(--neutral-0);
+}
+
+/* applying gradient color to text */
+#full-name{
+    color: transparent;
+    background-image: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* the gradient color does not apply to the `!` mark. Find why? */
+/* 
+    GPT had to say this: 
+        The issue arises because background-clip: text applies the background gradient only to the text itself, but the exclamation mark (!) may not have enough contrast against the transparent text color.
+
+        To fix this, try setting a fallback color for the exclamation mark so it's visible while the gradient is applied to the text part.
+*/
+#full-name::after{
+    content: "!";
+    color: var(--gradient-text)
+}
+
+#email{
+    color: var(--orange-500);
+}
+
+
+/* ticket container css */
+
+.ticket-container {
+    background: url(./assets/images/pattern-ticket.svg) no-repeat center center;
+    background-size: contain;
+    height: auto;
+    margin-top: 3rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 5%;
+}
+
+.overlay{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logo-svg{
+    width: 15%;
+    transform: scale(0.7);
+    align-self: flex-start;
+}
+
+#avatar-svg{
+    width: 15%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.text-content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.subtitle{
+    color: var(--neutral-300);
+    font-size: 0.8rem;
+} 
+
+.github{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.github img{
+    display: inline-block;
+}
+
+
+/* Responsive Styles for Mobile View (max-width: 768px) */
+@media (max-width: 1450px) and (min-width: 700px) {
+
+    .ticket-container{
+        gap: 1rem;
+        height: auto;
+    }
+
+    .overlay{
+        height: 40%;
+    }
+
+    .text-content{
+        gap: 2px;
+    }
+
+    .title{
+        font-size: 0.8rem;
+    }
+
+    .subtitle{
+        font-size: 0.7rem;
+    } 
+
+    .github{
+        gap: 0.2rem;
+    }
+}
+
+
+@media (max-width: 700px) and (min-width: 460px) {
+    .container{
+        width: 100vw;
+        height: 80vh;
+    }
+
+    .container h1{
+        font-size: 1rem;
+    }
+
+    .container > p:first-of-type{
+        font-size: 0.7rem;
+    }
+
+    .ticket-container{
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .overlay{
+        height: 20%;
+    }
+
+    .title{
+        font-size: 0.7rem;
+    }
+
+    .subtitle{
+        font-size: 0.5rem;
+    } 
+
+    .github{
+        gap: 0.1rem;
+    }
+
+    .github img{
+        width: 10%;
+    }
+}
+
+
+@media (max-width: 460px){
+
+    .container{
+        background: 
+            url('./assets/images/pattern-squiggly-line-bottom-desktop.svg') no-repeat  0 bottom,
+            url('./assets/images/pattern-squiggly-line-top.svg') no-repeat top right,
+            url('./assets/images/pattern-lines.svg') repeat,
+            url('./assets/images/background-mobile.png') no-repeat center center;
+        background-size: 60%, 30%, cover, cover;
+        width: 100vw;
+        height: 80vh;
+    }
+
+    .container h1{
+        font-size: 1rem;
+    }
+
+    .container > p:first-of-type{
+        font-size: 0.7rem;
+    }
+
+    .ticket-container{
+        justify-content: center;
+    }
+
+    .overlay{
+        height: 20%;
+    }
+
+    .title{
+        font-size: 0.7rem;
+    }
+
+    .subtitle{
+        font-size: 0.3rem;
+    } 
+
+    .github{
+        gap: 0.1rem;
+    }
+
+    
+    .github img{
+        width: 10%;
+    }
+
+}
